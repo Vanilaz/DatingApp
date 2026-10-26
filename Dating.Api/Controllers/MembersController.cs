@@ -1,14 +1,12 @@
-using Dating.Api.Data;
 using Dating.Api.Entities;
-using Microsoft.AspNetCore.Http;
+using Dating.Api.Features.Members;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace Dating.Api.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class MembersController(AppDbContext context) : ControllerBase
+    [Authorize]
+    public class MembersController(IMemberService memberService) : BaseController
     {
         /// <summary>
         /// ดึงรายชื่อสมาชิกทั้งหมดในระบบ
@@ -16,8 +14,8 @@ namespace Dating.Api.Controllers
         [HttpGet]
         public async Task<ActionResult<IReadOnlyList<AppUser>>> GetMembers()
         {
-            var result = await context.AppUsers.AsNoTracking().ToListAsync();
-            return Ok(result);
+            var members=await memberService.GetMemberAllAsync();
+            return Ok(members);
         }
 
         /// <summary>
@@ -29,7 +27,7 @@ namespace Dating.Api.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<AppUser>> GetMemberById(string id)
         {
-            var result = await context.AppUsers.FindAsync(id);
+            var result = await memberService.GetMemberByIdAsync(id);
 
             if (result is null) return NotFound("ไม่พบข้อมูล");
 

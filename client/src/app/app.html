@@ -2,7 +2,7 @@
   <h1 class="text-3xl text-red-500 font-bold">{{ title() }}</h1>
 
   <ul class="list">
-    @for (member of members(); track $index) {
+    @for (member of memberService.members(); track member.id) {
       <li class="list-row items-center">
         <img src="/user.png" alt="user avatar" class="size-12 rounded-box" />
         <div>

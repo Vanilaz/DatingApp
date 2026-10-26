@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { MemberService } from '../services/Members.service';
+import { Member } from '../models/member.model';
 
 @Component({
   imports: [],
@@ -13,11 +14,10 @@ export class App implements OnInit {
   private memberService = inject(MemberService);
 
   protected readonly title = signal('Dating App');
-  protected members =signal<any>([]);
 
 
   async ngOnInit() {
-      this.members.set(await this.memberService.getMember());
+      await this.memberService.loadMembers();
   }
 
 }
