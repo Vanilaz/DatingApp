@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Dating.Api.Controllers
 {
-    [Authorize]
     public class MembersController(IMemberService memberService) : BaseController
     {
         /// <summary>

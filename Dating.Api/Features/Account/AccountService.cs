@@ -24,6 +24,8 @@ public class AccountService(AppDbContext context, ITokenService tokenService) : 
         // 4. ตรวจสอบรหัสผ่านว่าตรงกับ Hash หรือไม่
         var isValid = BCrypt.Net.BCrypt.Verify(request.password, user.PasswordHash);
 
+        if (!isValid) throw new Exception("รหัสผ่านไม่ถูกต้อง");
+
 
         return user.ToDto(tokenService);
     }

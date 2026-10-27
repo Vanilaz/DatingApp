@@ -28,14 +28,23 @@ namespace Dating.Api.Controllers
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> Login(LoginDTOs request)
         {
-            var result = await accountService.Login(request);
-
-            if (result is null)
+            try
             {
-                return Unauthorized("อีเมลหรือรหัสผ่านไม่ถูกต้อง");
+                var result = await accountService.Login(request);
+
+                if (result is null)
+                {
+                    return Unauthorized("อีเมลหรือรหัสผ่านไม่ถูกต้อง");
+                }
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+
+                return Unauthorized(ex.Message);
             }
 
-            return Ok(result);
         }
     }
 }

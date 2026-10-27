@@ -1,0 +1,73 @@
+<div
+  class="bg-white w-full max-w-md mx-auto shadow-xl border border-slate-100 rounded-2xl p-8 text-left"
+>
+  <!-- Header -->
+  <div class="text-center mb-6">
+    <h2
+      class="text-3xl font-extrabold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent"
+    >
+      Sign Up
+    </h2>
+    <p class="text-sm text-slate-400 mt-1">Create a new account to get started</p>
+  </div>
+
+  <!-- Form -->
+  <form #registerForm="ngForm" class="flex flex-col gap-4" (ngSubmit)="register()">
+    <!-- Email -->
+    <div class="flex flex-col gap-1.5">
+      <label class="text-sm font-semibold text-slate-700">Email</label>
+      <input
+        type="email"
+        class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-slate-800 placeholder-slate-400 focus:bg-white focus:border-pink-500 focus:ring-2 focus:ring-pink-500/20 focus:outline-none transition-all"
+        name="email"
+        [(ngModel)]="creds.email"
+        placeholder="name@example.com"
+        required
+      />
+    </div>
+
+    <!-- Display Name -->
+    <div class="flex flex-col gap-1.5">
+      <label class="text-sm font-semibold text-slate-700">Display Name</label>
+      <input
+        type="text"
+        class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-slate-800 placeholder-slate-400 focus:bg-white focus:border-pink-500 focus:ring-2 focus:ring-pink-500/20 focus:outline-none transition-all"
+        name="displayName"
+        [(ngModel)]="creds.displayName"
+        placeholder="How should we call you?"
+        required
+      />
+    </div>
+
+    <!-- Password -->
+    <div class="flex flex-col gap-1.5">
+      <label class="text-sm font-semibold text-slate-700">Password</label>
+      <input
+        type="password"
+        class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-slate-800 placeholder-slate-400 focus:bg-white focus:border-pink-500 focus:ring-2 focus:ring-pink-500/20 focus:outline-none transition-all"
+        name="password"
+        [(ngModel)]="creds.password"
+        placeholder="••••••••"
+        required
+      />
+    </div>
+
+
+    <!-- Action Buttons -->
+    <div class="flex items-center justify-end gap-3 mt-6 pt-5 border-t border-slate-100">
+      <button
+        type="button"
+        class="px-5 py-2.5 rounded-xl font-medium text-slate-600 hover:bg-slate-100 transition-all cursor-pointer"
+        (click)="cancel()"
+      >
+        Cancel
+      </button>
+      <button
+        type="submit"
+        class="px-6 py-2.5 rounded-xl font-semibold text-white bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-500 hover:to-purple-500 shadow-md hover:shadow-lg transition-all cursor-pointer"
+      >
+        Register
+      </button>
+    </div>
+  </form>
+</div>
