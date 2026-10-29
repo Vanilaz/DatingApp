@@ -1,13 +1,65 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Client</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-</head>
-<body>
-  <app-root></app-root>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <title>Dating App</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  </head>
+  <body class="bg-slate-50 antialiased">
+    <!-- Splash Screen: ตรึงเต็มจอ (fixed inset-0) และจัดกึ่งกลางทั้งแนวตั้ง-แนวนอน -->
+    <div
+      id="initial-splash"
+      class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-slate-50 px-4 transition-opacity duration-500"
+    >
+      <!-- โลโก้พร้อม Animation วงแหวนด้านนอก -->
+      <div class="relative mb-8 flex items-center justify-center">
+        <!-- แสงฟุ้งด้านหลัง (Pulse Effect) -->
+        <div
+          class="absolute -inset-3 rounded-full bg-linear-to-r from-rose-400 via-pink-500 to-violet-500 opacity-25 blur-xl animate-pulse"
+        ></div>
+
+        <!-- วงแหวนหมุนรอบไอคอน (Spinner Ring) -->
+        <div
+          class="absolute -inset-1.5 rounded-full border-4 border-pink-100 border-t-pink-600 animate-spin"
+        ></div>
+
+        <!-- วงกลมไอคอนหลัก -->
+        <div
+          class="relative flex size-28 items-center justify-center rounded-full bg-linear-to-tr from-pink-50 to-purple-50 shadow-md border border-white"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            class="size-14 text-pink-600 animate-pulse"
+          >
+            <path
+              d="M4.5 6.375a4.125 4.125 0 1 1 8.25 0 4.125 4.125 0 0 1-8.25 0ZM14.25 8.625a3.375 3.375 0 1 1 6.75 0 3.375 3.375 0 0 1-6.75 0ZM1.5 19.125a7.125 7.125 0 0 1 14.25 0v.003l-.001.119a.75.75 0 0 1-.363.63 13.067 13.067 0 0 1-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 0 1-.364-.63l-.001-.122ZM17.25 19.128l-.001.144a2.25 2.25 0 0 1-.233.96 10.088 10.088 0 0 0 5.06-1.01.75.75 0 0 0 .42-.643 4.875 4.875 0 0 0-6.957-4.611 8.586 8.586 0 0 1 1.71 5.157v.003Z"
+            />
+          </svg>
+        </div>
+      </div>
+
+      <!-- ชื่อแอปและข้อความสถานะ -->
+      <h1
+        class="text-3xl font-extrabold tracking-tight bg-linear-to-r from-rose-500 via-pink-600 to-violet-600 bg-clip-text text-transparent"
+      >
+        Dating App
+      </h1>
+
+      <div class="mt-2 flex items-center gap-2 text-sm font-medium text-slate-400">
+        <span>Finding your matches</span>
+        <!-- จุด 3 จุดกระพริบ -->
+        <span class="flex gap-1">
+          <span class="size-1.5 rounded-full bg-pink-500 animate-bounce"></span>
+          <span class="size-1.5 rounded-full bg-pink-500 animate-bounce [animation-delay:150ms]"></span>
+          <span class="size-1.5 rounded-full bg-pink-500 animate-bounce [animation-delay:300ms]"></span>
+        </span>
+      </div>
+    </div>
+
+    <app-root></app-root>
+  </body>
 </html>

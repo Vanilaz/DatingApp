@@ -6,9 +6,19 @@ import { tap } from 'rxjs';
 @Service() // <-- ใน Angular 22 ใช้ตัวนี้ได้เลยถูกต้องแล้วครับ (เป็น root-provided อัตโนมัติ)
 export class AccountService {
   private http = inject(HttpClient); // <-- ใช้ inject ตัวพิมพ์เล็ก
-  currentUser = signal<User | null>(null);
+  currentUser = signal<User | null>(this.getUserFromStorage());
   baseUrl = 'https://localhost:7010/api/';
-
+  
+  private getUserFromStorage(): User | null {
+    const userString = localStorage.getItem('user');
+    if (!userString) return null;
+    try {
+      return JSON.parse(userString) as User;
+    } catch {
+      localStorage.removeItem('user');
+      return null;
+    }
+  }
   register(creds: RegisterCreds) {
     return this.http.post<User>(this.baseUrl + 'Account/register', creds).pipe(
       tap((user) => {
